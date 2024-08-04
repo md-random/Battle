@@ -15,30 +15,32 @@ This is a Vue 3 component that implements a Battle game. It features a responsiv
 ## Battle Project Version History
 
 1.0: Initial release with basic Battle gameplay  
-1.1: Fixed image loading issues, improved error handling, updated project structure
+1.1: Fixed image loading issues, improved error handling, updated project structure  
+1.2: Implemented 3x4 grid layout, added Player and Monster components, updated styling and fonts
 
 ## Logic and Function Explanations
 
 ### Core Game Functions
 
 - `selectRandomMonster()`: Randomly selects a monster from the bestiary.
+- `loadPlayerImage()`: Loads the image for the player character.
 - `loadMonsterImage(imagePath: string)`: Loads the image for the selected monster.
 
 ### Helper Functions
 
-- `handleImageError(event: Event)`: Handles errors when an image fails to load.
+- `handleImageError()`: Handles errors when an image fails to load for both player and monster.
 
 ### Game Flow Functions
 
-- `onMounted()`: Initializes the component and selects a random monster when mounted.
+- `onMounted()`: Initializes the components, loads player image, and selects a random monster when mounted.
 
 ## Customization
 
 You can customize the game by modifying the following:
 
 - Adding new monsters to the bestiary in `src/interface/Bestiary.ts`
-- Adjusting monster stats
-- Changing image paths for monsters in the `src/assets/bestiary-images/` directory
+- Adjusting player and monster stats in their respective components
+- Changing image paths for player and monsters in the appropriate asset directories
 
 ## Future Improvements
 
