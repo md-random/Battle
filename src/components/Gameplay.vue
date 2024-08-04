@@ -1,7 +1,7 @@
 <!-- src/components/Gameplay.vue -->
 <template>
   <div class="gameplay-container">
-    <div class="version">version 1.0</div>
+    <div class="version">version 1.1</div>
     <div class="gameplay">
       <MonsterBestiary />
       <!-- Other gameplay elements can be added here -->
