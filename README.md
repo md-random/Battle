@@ -30,10 +30,6 @@ This is a Vue 3 component that implements a Battle game. It features a responsiv
 
 - `handleImageError()`: Handles errors when an image fails to load for both player and monster.
 
-### Game Flow Functions
-
-- `onMounted()`: Initializes the components, loads player image, and selects a random monster when mounted.
-
 ## Customization
 
 You can customize the game by modifying the following:
