@@ -22,6 +22,19 @@ export const useCombatStore = defineStore('combat', () => {
     () => monster.value?.life !== undefined && monster.value.life <= 0
   )
 
+  const playerCombatResult = ref<string | null>(null)
+  const monsterCombatResult = ref<string | null>(null)
+
+  function setPlayerCombatResult(result: string) {
+    playerCombatResult.value = result
+    console.log('Player Combat Result:', result)
+  }
+
+  function setMonsterCombatResult(result: string) {
+    monsterCombatResult.value = result
+    console.log('Monster Combat Result:', result)
+  }
+
   function setPlayer(newPlayer: Player) {
     player.value = newPlayer
   }
@@ -29,16 +42,19 @@ export const useCombatStore = defineStore('combat', () => {
   function setMonster(newMonster: Monster) {
     monster.value = newMonster
   }
-
   function setCombatResult(result: string) {
     combatResult.value = result
+    console.log('Combat Result:', result) // Add this log to verify the result is being set
   }
 
   function applyDamage(target: 'player' | 'monster', damage: number) {
+    console.log(`Applying ${damage} damage to ${target}`)
     if (target === 'player' && player.value) {
       player.value.life = Math.max(0, player.value.life - damage)
+      console.log(`Player life after damage: ${player.value.life}`)
     } else if (target === 'monster' && monster.value) {
       monster.value.life = Math.max(0, monster.value.life - damage)
+      console.log(`Monster life after damage: ${monster.value.life}`)
     }
     checkCombatEnd()
   }
@@ -54,6 +70,7 @@ export const useCombatStore = defineStore('combat', () => {
   }
 
   function monsterAttack() {
+    console.log('Monster attack called')
     if (!player.value || !monster.value || isCombatEnded.value) return
 
     const monsterAttackRoll =
@@ -67,6 +84,10 @@ export const useCombatStore = defineStore('combat', () => {
       player.value.defenseRating +
       player.value.awareness / 2
 
+    console.log(
+      `Monster attack roll: ${monsterAttackRoll}, Player defense roll: ${playerDefenseRoll}`
+    )
+
     if (monsterAttackRoll >= playerDefenseRoll) {
       const damage = Math.max(
         1,
@@ -77,10 +98,12 @@ export const useCombatStore = defineStore('combat', () => {
             player.value.defenseRating / 20
         )
       )
+      console.log(`Monster hit for ${damage} damage`)
       applyDamage('player', damage)
-      setCombatResult(`Monster hits Player for ${damage} damage!`)
+      setMonsterCombatResult(`Monster hits Player for ${damage} damage!`)
     } else {
-      setCombatResult('Monster misses!')
+      console.log('Monster missed')
+      setMonsterCombatResult('Monster misses!')
     }
   }
 
@@ -108,8 +131,6 @@ export const useCombatStore = defineStore('combat', () => {
         'After decrement - Special cooldown:',
         specialAttackCooldown.value
       )
-
-      monsterAttack()
     }
 
     console.log('End of incrementTurn')
@@ -152,14 +173,15 @@ export const useCombatStore = defineStore('combat', () => {
         )
       )
       applyDamage('monster', damage)
-      setCombatResult(
+      setPlayerCombatResult(
         `Player hits Monster with Primary Attack for ${damage} damage!`
       )
     } else {
-      setCombatResult('Player misses with Primary Attack!')
+      setPlayerCombatResult('Player misses with Primary Attack!')
     }
 
     incrementTurn()
+    monsterAttack()
 
     console.log(
       'After Primary Attack - Secondary cooldown:',
@@ -313,6 +335,8 @@ export const useCombatStore = defineStore('combat', () => {
     skipTurn,
     canUseSecondaryAttack,
     canUseSpecialAttack,
-    incrementTurn, // Ensure this is included in the return statement
+    incrementTurn,
+    playerCombatResult,
+    monsterCombatResult,
   }
 })

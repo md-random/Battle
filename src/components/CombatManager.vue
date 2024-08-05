@@ -24,8 +24,13 @@
       </button>
     </div>
 
-    <div v-if="combatResult" class="combat-result">
-      {{ combatResult }}
+    <div class="combat-results">
+      <div v-if="playerCombatResult" class="player-combat-result">
+        {{ playerCombatResult }}
+      </div>
+      <div v-if="monsterCombatResult" class="monster-combat-result">
+        {{ monsterCombatResult }}
+      </div>
     </div>
 
     <div class="turn-counter">Turn: {{ turnCount }}</div>
@@ -52,7 +57,8 @@ const gameStateStore = useGameStateStore()
 const {
   player,
   monster,
-  combatResult,
+  playerCombatResult,
+  monsterCombatResult,
   isCombatEnded,
   isPlayerDead,
   isMonsterDead,
@@ -101,8 +107,12 @@ onMounted(() => {
   margin-top: 20px;
 }
 
-.combat-result {
+.combat-results {
   margin-top: 20px;
+}
+
+.player-combat-result,
+.monster-combat-result {
   font-weight: bold;
 }
 
