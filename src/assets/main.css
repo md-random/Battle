@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Press+Start+2P&display=swap');
 @import './base.css';
 
 #app {
   max-width: 1280px;
-  font-weight: normal;
 }

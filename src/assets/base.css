@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Press+Start+2P&display=swap');
 
 :root {
   --color-primary: #397367;
@@ -41,17 +41,17 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background: var(--color-background-mute);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: 'Electrolize', sans-serif !important;
-  font-size: 15px;
+  font-family: 'Electrolize', sans-serif, 'Press Start 2P', system-ui;
+  font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
