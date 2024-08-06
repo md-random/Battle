@@ -5,13 +5,24 @@
       <div class="combat-manager grid-item grid-item-2">
         <CombatManager />
       </div>
-      <div class="grid-item grid-item-3">
-        <div v-if="combatResult" class="combat-result">
-          {{ combatResult }}
+      <div class="grid-item grid-3">
+        <div class="combat-results">
+          <div
+            v-if="combatStore.playerCombatResult"
+            class="player-combat-result"
+          >
+            {{ combatStore.playerCombatResult }}
+          </div>
+          <div
+            v-if="combatStore.monsterCombatResult"
+            class="monster-combat-result"
+          >
+            {{ combatStore.monsterCombatResult }}
+          </div>
         </div>
       </div>
       <div class="grid-item grid-item-4">
-        <div class="version">Version 1.3</div>
+        <div class="version">Version 1.4</div>
       </div>
       <div class="player-info grid-item grid-item-5">
         <Player :showImage="false" />

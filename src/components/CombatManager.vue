@@ -24,17 +24,6 @@
       </button>
     </div>
 
-    <div class="combat-results">
-      <div v-if="playerCombatResult" class="player-combat-result">
-        {{ playerCombatResult }}
-      </div>
-      <div v-if="monsterCombatResult" class="monster-combat-result">
-        {{ monsterCombatResult }}
-      </div>
-    </div>
-
-    <div class="turn-counter">Turn: {{ turnCount }}</div>
-
     <div v-if="isCombatEnded" class="combat-ended">
       <h2>Combat Ended</h2>
       <p v-if="isPlayerDead">Game Over! Player has died.</p>
