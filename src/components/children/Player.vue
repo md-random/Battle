@@ -3,26 +3,28 @@
     <img
       v-if="showImage"
       :src="playerImage"
-      :alt="player.name"
+      :alt="player?.name"
       @error="handleImageError"
     />
     <div v-if="showInfo">
-      <h2>{{ player.name }}</h2>
-      <p>Type: {{ player.type }}</p>
-      <p>Attack Style: {{ player.attackStyle }}</p>
-      <p>Life: {{ player.life }}</p>
-      <p>Attack Power: {{ player.attackPower }}</p>
-      <p>Defense Rating: {{ player.defenseRating }}</p>
-      <p>Awareness: {{ player.awareness }}</p>
-      <p>Primary Attack: {{ player.primaryAttack }}</p>
-      <p>Secondary Attack: {{ player.secondaryAttack }}</p>
-      <p>Special Attack: {{ player.specialAttack }}</p>
+      <h2>{{ player?.name }}</h2>
+      <p>Type: {{ player?.type }}</p>
+      <p>Attack Style: {{ player?.attackStyle }}</p>
+      <p>Life: {{ player?.life }}</p>
+      <p>Attack Power: {{ player?.attackPower }}</p>
+      <p>Defense Rating: {{ player?.defenseRating }}</p>
+      <p>Awareness: {{ player?.awareness }}</p>
+      <p>Primary Attack: {{ player?.primaryAttack }}</p>
+      <p>Secondary Attack: {{ player?.secondaryAttack }}</p>
+      <p>Special Attack: {{ player?.specialAttack }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCombatStore } from '../../stores/combatStore'
 import type { Player } from '../interface/Player'
 
 const props = defineProps({
@@ -36,26 +38,15 @@ const props = defineProps({
   },
 })
 
-const player = ref<Player>({
-  name: 'Player',
-  type: 'Human',
-  attackStyle: 'Melee',
-  life: 100,
-  attackPower: 75,
-  defenseRating: 50,
-  awareness: 80,
-  image: 'player-warrior.jpeg',
-  primaryAttack: 'Sword Slash',
-  secondaryAttack: 'Shield Bash',
-  specialAttack: 'Heroic Strike',
-})
+const combatStore = useCombatStore()
+const { player } = storeToRefs(combatStore)
 
 const playerImage = ref<string | undefined>(undefined)
 
 const loadPlayerImage = () => {
   try {
     const imageUrl = new URL(
-      `../../assets/player-images/${player.value.image}`,
+      `../../assets/player-images/${player.value?.image}`,
       import.meta.url
     ).href
     playerImage.value = imageUrl

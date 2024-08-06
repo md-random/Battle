@@ -21,6 +21,7 @@ This is a Vue 3 component that implements a Battle game. It features a responsiv
 - **1.2**: Implemented 3x4 grid layout, added Player and Monster components, updated styling and fonts
 - **1.3**: Added cooldown system for secondary and special attacks, improved combat mechanics
 - **1.4**: Separated player and monster combat result messages, ensured correct display of player stats and life updates during combat
+- **1.5**: Fixed issue with player life not updating when hit by monster; added null checks in Player component to prevent errors.
 
 ## Logic and Function Explanations
 
@@ -59,21 +60,3 @@ You can customize the game by modifying the following:
 ## License
 
 This project is open source and available under the MIT License.
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```

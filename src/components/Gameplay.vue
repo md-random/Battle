@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="grid-item grid-item-4">
-        <div class="version">Version 1.4</div>
+        <div class="version">Version 1.5</div>
       </div>
       <div class="player-info grid-item grid-item-5">
         <Player :showImage="false" />
